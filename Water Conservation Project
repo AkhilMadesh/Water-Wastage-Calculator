@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Water Calculator</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    background-image: url(https://th.bing.com/th/id/R.c21ba05e7ea27c40f2f8a873c656d645?rik=u5O36F%2fI65Y9AQ&riu=http%3a%2f%2fblogs.egusd.net%2fxiong%2ffiles%2f2015%2f05%2fXiongCConserveWater1-1z61o6t.jpg&ehk=mE9KLZsEray%2bJsLp6GUZmBGzXsgabuz2SlCYsRSqtVQ%3d&risl=&pid=ImgRaw&r=0;);
+    background-size: cover; /* Cover the entire page */
+    background-position:; /* Center the image */
+    background-repeat: no-repeat;
+    opacity: 0.91; /* 80% opacity */
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: rgb(254, 253, 252);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 20px;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.hidden {
+    display: none;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: center;
+}
+label {
+            font-family: 'Times New Roman', sans-serif; /* Change to your desired font */
+            font-size: 20px; /* Change font size if needed */
+            color: #e80b0b; /* Change font color */
+        }
+h1{color:rgb(77, 8, 252);
+    background-color: rgb(251, 120, 5);
+            color: rgb(253, 253, 255);
+            border: 2px solid orange;
+            padding: 10px;
+            text-shadow: 6px 3px 9px black;
+            transition: background-color 0.3s;
+        }
+
+        h1:hover {
+            background-color: rgb(20, 20, 20); /* Highlight color on hover */
+            color: white; /* Change text color on hover */
+        }
+
+
+
+</style>
+
+</head>
+<body>
+    
+    <div class="container">
+        <h1 style="font-family: 'cooper Black', sans-serif;">Water Usage Calculator</h1>
+        <form id="waterForm">
+            <label for="occupants">Number of Family Members:</label>
+            <input type="number" id="occupants" min="1" value="1" required>
+
+            <label for="shower">Average Shower Time (min per person):</label>
+            <input type="number" id="shower" min="0" value="10" required>
+
+            <label for="toilet">Number of Toilet Flushes per Person:</label>
+            <input type="number" id="toilet" min="1" value="5" required>
+
+            <label for="laundry">Number of Laundry Loads per Week:</label>
+            <input type="number" id="laundry" min="0" value="3" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div id="result" class="hidden">
+            <h2>Your Estimated Weekly Water Usage:</h2>
+            <p id="usage"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('waterForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const occupants = parseInt(document.getElementById('occupants').value);
+    const showerTime = parseInt(document.getElementById('shower').value);
+    const toiletFlushes = parseInt(document.getElementById('toilet').value);
+    const laundryLoads = parseInt(document.getElementById('laundry').value);
+
+    // Water usage calculations
+    const showerUsage = occupants * showerTime * 7 * 2; // approx. 2 liters per minute
+    const toiletUsage = occupants * toiletFlushes * 7 * 3; // approx. 3 liters per flush
+    const laundryUsage = laundryLoads * 10; // approx. 10 liters per load
+
+    const totalUsage = showerUsage + toiletUsage + laundryUsage;
+
+    document.getElementById('usage').innerText = `${totalUsage.toFixed(2)} liters`;
+    document.getElementById('result').classList.remove('hidden');
+});
+
+
+
+    </script>
+</body>
+</html>
